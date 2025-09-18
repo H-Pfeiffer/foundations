@@ -1,0 +1,32 @@
+{
+  "name": "foundations",
+  "version": "1.0.0",
+  "description": "You are creating a ticketing reimbursement system for a company. To have an idea of what is expected of you, watch the following below:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js",
+    "stop": "taskkill /PID 31968 /F",
+    "check": "netstat -ano | findstr :3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/H-Pfeiffer/foundations.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/H-Pfeiffer/foundations/issues"
+  },
+  "homepage": "https://github.com/H-Pfeiffer/foundations#readme",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.887.0",
+    "@aws-sdk/lib-dynamodb": "^3.886.0",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "winston": "^3.17.0"
+  }
+}
