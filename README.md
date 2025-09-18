@@ -24,16 +24,6 @@ The required features must be completed and presented during a 5 minute timeslot
 - Create your first commit on you computer
 - Complete your first push to the repository on GitHub
 
-### Use Case Design
-
-- Understand what your application is meant to do
-- Review the diagrams
-
-![Activity Diagram](images/Activity-Diagram.png) 
-![State Chart Diagram](images/State-Chart-Diagram.png) 
-![Use Case Diagram](images/Use-Case-Diagram.png)
-
-
 ### Glossary of Terms
 
 #### Feature
