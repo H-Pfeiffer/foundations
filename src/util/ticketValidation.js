@@ -1,7 +1,7 @@
 const logger = require("../util/logger");
 
 const isValidAmount = (amount) => {
-    if (!amount) {
+    if (!amount || amount <= 0) {
         logger.warn(`Invalid amount: ${JSON.stringify(amount)}`);  
         return false;
     }
