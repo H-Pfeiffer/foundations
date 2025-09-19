@@ -42,10 +42,6 @@ const isManager = async (username) => {
     const currentUser = await userDAO.getUserByUsername(username);
     logger.info({message: 'from isManager in userValidation', user: currentUser});
     const isAManager = currentUser.role === "manager";
-
-    if (!isAManager) {
-        logger.warn(`The following user does not have authorization to access pending tickets: ${JSON.stringify(username)}`);         
-    }
     return isAManager;
 }
 

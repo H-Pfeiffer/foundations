@@ -26,7 +26,7 @@ const isValidStatus = (updatedStatus) => {
 }
 
 const isValidStatusToViewTickets = (status) => {
-    const isAValidStatus = status === "approved" || status === "denied" || status === "pending";
+    const isAValidStatus = status.toLowerCase() === "approved" || status === "denied" || status === "pending";
 
     if (!isAValidStatus){
         logger.warn({message: "The following updated status is invalid: must assign approved, denied, or pending", status: status});         
