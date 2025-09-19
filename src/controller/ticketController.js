@@ -6,6 +6,7 @@ const ticketSystemsService = require('../service/ticketSystemsService');
 const { isManager } = require('../util/userValidation');
 const logger = require("../util/logger");
 
+// submit a ticket
 router.post("/", authenticateToken, async (req, res) => {
     logger.info(`Incoming ticketController POST "/" request: ${JSON.stringify(req.body)}`);
 
@@ -22,26 +23,26 @@ router.post("/", authenticateToken, async (req, res) => {
     }
 });
 
+// get tickets individual employee (with their id) or manager (all tickets)
 router.get("/", authenticateToken, async (req, res) => {
     try {
         const { id, username } = req.user; 
         const { status } = req.query;
+        logger.info({message: `Incoming ticketController GET "/" request`, user: req.user, status: status});
 
-        logger.info({message: `Incoming ticketController GET "/" request`, req_user: req.user, req_params: status});
-        const tickets = await isManager(username)
+        const tickets = (await isManager(username))
             ? await ticketSystemsService.getAllTicketsByStatus(status)
-            : await ticketService.getAllTicketsByUserId(id);
+            : await ticketService.getAllTicketsByUserIdAndStatus(id, status);
 
-        logger.info({message: "in GET / retuest of ticket controller", ticket: tickets});
         return tickets
-            ? res.status(200).json({message: 'Tickets include:', tickets: tickets.Items})
+            ? res.status(200).json({message: 'Tickets include:', tickets: tickets})
             : res.status(200).json({message: `There aren't any tickets to display.`});          
     } catch (err) {
         logger.error(`Error in ticketController POST "/": ${err}`);
     }
 })
 
-// update ticket status 
+// update ticket status (manager only)
 router.patch("/:ticket_id/status", authenticateToken, async (req, res) => {
     logger.info(`Incoming ticketSystemsController PUT "/" request: ${JSON.stringify(req.body)} ${JSON.stringify(req.params)}`);
 
