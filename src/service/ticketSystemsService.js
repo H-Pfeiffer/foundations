@@ -8,12 +8,12 @@ const getAllTicketsByStatus = async (status) => {
     try {
         if (!status) {
             const tickets = await ticketDAO.getAllTickets();
-            return tickets;            
+            return tickets.Items;            
         }
         else if (isValidStatusToViewTickets(status)) {
-            const tickets = await ticketDAO.getAllTicketsByStatus(status);
+            const tickets = await ticketDAO.getAllTicketsByStatus(status.toLowerCase());
             logger.info(`Returned data from getAllTicketsByStatus in ticketSystemsService: ${JSON.stringify(tickets)}`);
-            return tickets;
+            return tickets.Items;
         }      
     } catch (err) {
         logger.error(`Error in getAllPendingTickets in ticketSystemsService: ${err}`);
