@@ -61,29 +61,3 @@ module.exports = {
     getUserByUsername,
     validateLogin,
 }
-
-
-
-
-
-
-
-// testing 
-
-// const newUser = {
-//     user_id: "1234567890009877",
-//     username: "Jon-Snow",
-//     password: "winterIsComing!",
-//     role: "manager" 
-// }
-
-// registerUser(newUser);
-
-// const run = async () => {
-//     const res = await validateLogin("Jon-Snow", "winterIsComing!");
-//     console.log(res);
-// } 
-
-// run();
-
-// getUserByUsername("Jon-Snow");
