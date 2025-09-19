@@ -4,7 +4,8 @@
   "description": "You are creating a ticketing reimbursement system for a company. To have an idea of what is expected of you, watch the following below:",
   "main": "index.js",
   "scripts": {
-    "test": "jest --collectCoverage",
+    "test": "jest",
+    "cc-test": "jest --collectCoverage",
     "start": "node ./src/app.js"
   },
   "repository": {
