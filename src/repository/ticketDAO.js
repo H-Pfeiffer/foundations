@@ -55,6 +55,31 @@ const getAllTicketsByUserId = async (user_id) => {
     return null; 
 }
 
+// get all tickets (for an employee) by id and status
+const getAllTicketsByUserIdAndStatus = async (user_id, status) => {
+    const command = new ScanCommand({
+        TableName,
+        FilterExpression: "#user_id = :user_id AND #status = :status",
+        ExpressionAttributeNames: {
+            "#user_id" : "user_id",
+            "#status" : "status"
+        },
+        ExpressionAttributeValues: {
+            ":user_id": user_id,
+            ":status": status,
+        }
+    })
+    try {
+        logger.info({message: "In getAllTicketsByUserIdAndStatus of ticketDAO", user_id: user_id, status: status})
+        const data = await ddbDocClient.send(command);
+        logger.info(`Data from getAllTicketsByUserIdAndStatus in ticketDAO: ${JSON.stringify(data)}`);
+        return data.Items;
+    } catch (err) {
+        logger.error(`Error in getAllTicketsByUserIdAndStatus in ticketDAO: ${err}`);
+    }
+    return null; 
+}
+
 // this just returns metadata by default but see AWS Options attribute for PutCommand to return createdData
 const createTicket = async (ticket) => {
     const command = new PutCommand({
@@ -120,6 +145,7 @@ module.exports = {
     getTicketById,
     getAllTickets,
     getAllTicketsByUserId,
+    getAllTicketsByUserIdAndStatus,
     createTicket,
     getAllTicketsByStatus,
     updateTicketStatusById,
