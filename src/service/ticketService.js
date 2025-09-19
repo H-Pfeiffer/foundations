@@ -19,10 +19,13 @@ const createTicket = async (amount, description, user_id) => {
 }
 
 // get all tickets for employee
-const getAllTicketsByUserId = async (id) => {
+const getAllTicketsByUserIdAndStatus = async (id, status = "") => {
     if (id) {
         try {
-            const tickets = await ticketDAO.getAllTicketsByUserId(id);
+            const tickets = !status 
+                ? await ticketDAO.getAllTicketsByUserId(id)
+                : await ticketDAO.getAllTicketsByUserIdAndStatus(id, status.toLowerCase());
+
             logger.info(`Returned data from getAllTicketsByUserId in ticketService: ${JSON.stringify(tickets)}`);
             return tickets;
         } catch (err) {
@@ -35,6 +38,6 @@ const getAllTicketsByUserId = async (id) => {
 
 module.exports = {
     createTicket,
-    getAllTicketsByUserId,
+    getAllTicketsByUserIdAndStatus
 }
 
